@@ -9,6 +9,13 @@
 
 using namespace std;
 
+// Función para centrar texto en un ancho específico
+static std::string centrarTexto(const std::string& texto, int ancho) {
+    int espaciosIzq = (ancho - texto.size()) / 2;
+    int espaciosDer = ancho - texto.size() - espaciosIzq;
+    return std::string(espaciosIzq, ' ') + texto + std::string(espaciosDer, ' ');
+}
+
 int main() {
     SQLHENV hEnv;
     SQLHDBC hDbc;
@@ -65,8 +72,6 @@ int main() {
                 {
                     respuesta = L"No";
                 }
-
-
                 
                 // Imprimir datos de la fila con alineación
                 wcout << L"| " << setw(14) << left << num_empleado
@@ -91,4 +96,6 @@ int main() {
     SQLFreeHandle(SQL_HANDLE_ENV, hEnv);
 
     return 0;
+
+
 }
